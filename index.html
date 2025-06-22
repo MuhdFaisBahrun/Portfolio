@@ -1,44 +1,355 @@
 <!DOCTYPE html>
-<html lang="id">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Portofolio Desain Grafis</title>
-    <link rel="stylesheet" href="styles.css">
+    <title>Design Portfolio | Creative Works</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        :root {
+            --primary: #6C63FF;
+            --secondary: #4D44DB;
+            --dark: #2A2A2A;
+            --light: #F8F9FA;
+            --accent: #FF6584;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+        
+        body {
+            background-color: var(--light);
+            color: var(--dark);
+            overflow-x: hidden;
+        }
+        
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 10px;
+        }
+        
+        ::-webkit-scrollbar-track {
+            background: var(--light);
+        }
+        
+        ::-webkit-scrollbar-thumb {
+            background: var(--primary);
+            border-radius: 10px;
+        }
+        
+        /* Navigation */
+        .navbar {
+            transition: all 0.3s ease;
+            backdrop-filter: blur(10px);
+        }
+        
+        .navbar.scrolled {
+            background-color: rgba(255, 255, 255, 0.9);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+        }
+        
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .hero-content {
+            z-index: 2;
+        }
+        
+        .hero-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 1;
+            opacity: 0.1;
+        }
+        
+        .hero-bg-circle {
+            position: absolute;
+            border-radius: 50%;
+            background: radial-gradient(circle, var(--primary), transparent);
+            filter: blur(60px);
+        }
+        
+        /* Project Cards */
+        .project-card {
+            transition: all 0.3s ease;
+            perspective: 1000px;
+        }
+        
+        .project-card:hover {
+            transform: translateY(-10px);
+        }
+        
+        .project-card-inner {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            transition: transform 0.6s;
+            transform-style: preserve-3d;
+        }
+        
+        .project-card:hover .project-card-inner {
+            transform: rotateY(10deg);
+        }
+        
+        /* Skills Section */
+        .skill-item {
+            transition: all 0.3s ease;
+        }
+        
+        .skill-item:hover {
+            transform: scale(1.05);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        }
+        
+        /* Contact Form */
+        .contact-input {
+            transition: all 0.3s ease;
+            border-bottom: 2px solid rgba(0, 0, 0, 0.1);
+        }
+        
+        .contact-input:focus {
+            border-bottom-color: var(--primary);
+        }
+        
+        /* Animations */
+        @keyframes float {
+            0%, 100% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(-20px);
+            }
+        }
+        
+        .floating {
+            animation: float 6s ease-in-out infinite;
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero-bg-circle {
+                display: none;
+            }
+        }
+    </style>
 </head>
 <body>
-    <header>
-        <h1>Nama Anda</h1>
-        <nav>
-            <ul>
-                <li><a href="#about">Tentang</a></li>
-                <li><a href="#portfolio">Portofolio</a></li>
-                <li><a href="#contact">Kontak</a></li>
-            </ul>
-        </nav>
-    </header>
+    <!-- Navigation -->
+    <nav class="navbar fixed w-full z-50 py-4 px-6 lg:px-16">
+        <div class="max-w-7xl mx-auto flex justify-between items-center">
+            <a href="#" class="text-2xl font-bold text-primary">Portfolio<span class="text-accent">.</span></a>
+            <div class="hidden md:flex space-x-8">
+                <a href="#home" class="text-dark hover:text-primary transition">Home</a>
+                <a href="#projects" class="text-dark hover:text-primary transition">Projects</a>
+                <a href="#skills" class="text-dark hover:text-primary transition">Skills</a>
+                <a href="#about" class="text-dark hover:text-primary transition">About</a>
+                <a href="#contact" class="text-dark hover:text-primary transition">Contact</a>
+            </div>
+            <button class="md:hidden text-dark text-2xl">
+                <i class="fas fa-bars"></i>
+            </button>
+        </div>
+    </nav>
 
-    <section id="about">
-        <h2>Tentang Saya</h2>
-        <p>Deskripsi singkat tentang diri Anda dan keahlian Anda dalam desain grafis.</p>
-    </section>
-
-    <section id="portfolio">
-        <h2>Portofolio</h2>
-        <div class="gallery">
-            <img src="images/sample1.jpg" alt="Desain 1">
-            <img src="images/sample2.jpg" alt="Desain 2">
-            <img src="images/sample3.jpg" alt="Desain 3">
+    <!-- Hero Section -->
+    <section id="home" class="hero flex items-center justify-center px-6 py-20">
+        <!-- Background Elements -->
+        <div class="hero-bg">
+            <div class="hero-bg-circle w-64 h-64 top-1/4 left-1/4"></div>
+            <div class="hero-bg-circle w-96 h-96 bottom-1/4 right-1/4"></div>
+        </div>
+        
+        <!-- Content -->
+        <div class="hero-content max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between">
+            <div class="md:w-1/2 mb-12 md:mb-0">
+                <h1 class="text-4xl md:text-6xl font-bold mb-4">Hi, I'm <span class="text-primary">Designer</span></h1>
+                <h2 class="text-2xl md:text-3xl font-semibold mb-6">Creating <span class="text-accent">beautiful</span> digital experiences</h2>
+                <p class="text-lg mb-8 text-gray-600 max-w-lg">I specialize in UI/UX design, branding, and interactive experiences that captivate audiences and drive engagement.</p>
+                <div class="flex space-x-4">
+                    <a href="#projects" class="px-8 py-3 bg-primary text-white rounded-full hover:bg-secondary transition">View Work</a>
+                    <a href="#contact" class="px-8 py-3 border-2 border-primary text-primary rounded-full hover:bg-primary hover:text-white transition">Hire Me</a>
+                </div>
+            </div>
+            <div class="md:w-1/2 flex justify-center">
+                <div class="relative floating">
+                    <div class="w-64 h-64 md:w-80 md:h-80 rounded-full bg-gradient-to-br from-primary to-accent flex items-center justify-center shadow-xl">
+                        <div class="w-60 h-60 md:w-72 md:h-72 rounded-full bg-white flex items-center justify-center overflow-hidden">
+                            <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5cd?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=688&q=80" alt="Designer" class="w-full h-full object-cover">
+                        </div>
+                    </div>
+                    <div class="absolute -bottom-6 -right-6 bg-white p-4 rounded-lg shadow-lg">
+                        <div class="flex items-center">
+                            <div class="w-10 h-10 rounded-full bg-primary flex items-center justify-center text-white mr-2">
+                                <i class="fas fa-trophy"></i>
+                            </div>
+                            <div>
+                                <p class="text-xs text-gray-500">Awards</p>
+                                <p class="font-bold">5+</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </section>
 
-    <section id="contact">
-        <h2>Kontak</h2>
-        <p>Email: <a href="mailto:email@anda.com">email@anda.com</a></p>
+    <!-- Projects Section -->
+    <section id="projects" class="py-20 px-6 bg-white">
+        <div class="max-w-7xl mx-auto">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-4xl font-bold mb-4">My <span class="text-primary">Creative</span> Works</h2>
+                <p class="text-gray-600 max-w-2xl mx-auto">Explore my collection of design projects that showcase my creativity and problem-solving skills.</p>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Project 1 -->
+                <div class="project-card">
+                    <div class="project-card-inner">
+                        <div class="bg-white rounded-xl overflow-hidden shadow-lg h-full">
+                            <div class="relative h-48 overflow-hidden">
+                                <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" alt="Project 1" class="w-full h-full object-cover transition duration-500 hover:scale-110">
+                                <div class="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent"></div>
+                                <div class="absolute bottom-4 left-4">
+                                    <span class="bg-primary text-white text-xs px-3 py-1 rounded-full">UI/UX</span>
+                                </div>
+                            </div>
+                            <div class="p-6">
+                                <h3 class="text-xl font-bold mb-2">E-commerce Platform</h3>
+                                <p class="text-gray-600 mb-4">A modern e-commerce interface with seamless user experience and intuitive navigation.</p>
+                                <a href="#" class="text-primary font-medium flex items-center">
+                                    View Case Study <i class="fas fa-arrow-right ml-2"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Project 2 -->
+                <div class="project-card">
+                    <div class="project-card-inner">
+                        <div class="bg-white rounded-xl overflow-hidden shadow-lg h-full">
+                            <div class="relative h-48 overflow-hidden">
+                                <img src="https://images.unsplash.com/photo-1541462608143-67571c6738dd?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" alt="Project 2" class="w-full h-full object-cover transition duration-500 hover:scale-110">
+                                <div class="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent"></div>
+                                <div class="absolute bottom-4 left-4">
+                                    <span class="bg-accent text-white text-xs px-3 py-1 rounded-full">Branding</span>
+                                </div>
+                            </div>
+                            <div class="p-6">
+                                <h3 class="text-xl font-bold mb-2">Coffee Brand Identity</h3>
+                                <p class="text-gray-600 mb-4">Complete brand identity for an artisanal coffee company including logo and packaging.</p>
+                                <a href="#" class="text-primary font-medium flex items-center">
+                                    View Case Study <i class="fas fa-arrow-right ml-2"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Project 3 -->
+                <div class="project-card">
+                    <div class="project-card-inner">
+                        <div class="bg-white rounded-xl overflow-hidden shadow-lg h-full">
+                            <div class="relative h-48 overflow-hidden">
+                                <img src="https://images.unsplash.com/photo-1559028012-481c04fa702d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1636&q=80" alt="Project 3" class="w-full h-full object-cover transition duration-500 hover:scale-110">
+                                <div class="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent"></div>
+                                <div class="absolute bottom-4 left-4">
+                                    <span class="bg-secondary text-white text-xs px-3 py-1 rounded-full">Web Design</span>
+                                </div>
+                            </div>
+                            <div class="p-6">
+                                <h3 class="text-xl font-bold mb-2">Travel App Interface</h3>
+                                <p class="text-gray-600 mb-4">Mobile application design for a travel platform with personalized recommendations.</p>
+                                <a href="#" class="text-primary font-medium flex items-center">
+                                    View Case Study <i class="fas fa-arrow-right ml-2"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="text-center mt-12">
+                <a href="#" class="inline-flex items-center px-6 py-3 border border-primary text-primary rounded-full hover:bg-primary hover:text-white transition">
+                    View All Projects <i class="fas fa-arrow-right ml-2"></i>
+                </a>
+            </div>
+        </div>
     </section>
 
-    <footer>
-        <p>&copy; 2025 Nama Anda. Semua hak dilindungi.</p>
-    </footer>
-</body>
-</html>
+    <!-- Skills Section -->
+    <section id="skills" class="py-20 px-6 bg-gray-50">
+        <div class="max-w-7xl mx-auto">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-4xl font-bold mb-4">My <span class="text-primary">Design</span> Skills</h2>
+                <p class="text-gray-600 max-w-2xl mx-auto">I combine technical expertise with creative vision to deliver exceptional design solutions.</p>
+            </div>
+            
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-6">
+                <!-- Skill 1 -->
+                <div class="skill-item bg-white p-6 rounded-xl shadow-md">
+                    <div class="w-14 h-14 rounded-full bg-primary/10 text-primary flex items-center justify-center mb-4">
+                        <i class="fas fa-pen-nib text-2xl"></i>
+                    </div>
+                    <h3 class="text-lg font-bold mb-2">UI/UX Design</h3>
+                    <p class="text-gray-600 text-sm">Creating intuitive and visually appealing user interfaces.</p>
+                    <div class="mt-4">
+                        <div class="w-full bg-gray-200 rounded-full h-2">
+                            <div class="bg-primary h-2 rounded-full" style="width: 90%"></div>
+                        </div>
+                        <span class="text-xs text-gray-500 mt-1 block">90% proficiency</span>
+                    </div>
+                </div>
+                
+                <!-- Skill 2 -->
+                <div class="skill-item bg-white p-6 rounded-xl shadow-md">
+                    <div class="w-14 h-14 rounded-full bg-accent/10 text-accent flex items-center justify-center mb-4">
+                        <i class="fas fa-palette text-2xl"></i>
+                    </div>
+                    <h3 class="text-lg font-bold mb-2">Visual Design</h3>
+                    <p class="text-gray-600 text-sm">Crafting compelling visual narratives and brand identities.</p>
+                    <div class="mt-4">
+                        <div class="w-full bg-gray-200 rounded-full h-2">
+                            <div class="bg-accent h-2 rounded-full" style="width: 85%"></div>
+                        </div>
+                        <span class="text-xs text-gray-500 mt-1 block">85% proficiency</span>
+                    </div>
+                </div>
+                
+                <!-- Skill 3 -->
+                <div class="skill-item bg-white p-6 rounded-xl shadow-md">
+                    <div class="w-14 h-14 rounded-full bg-secondary/10 text-secondary flex items-center justify-center mb-4">
+                        <i class="fas fa-mobile-alt text-2xl"></i>
+                    </div>
+                    <h3 class="text-lg font-bold mb-2">Mobile Design</h3>
+                    <p class="text-gray-600 text-sm">Designing responsive interfaces for mobile platforms.</p>
+                    <div class="mt-4">
+                        <div class="w-full bg-gray-200 rounded-full h-2">
+                            <div class="bg-secondary h-2 rounded-full" style="width: 80%"></div>
+                        </div>
+                        <span class="text-xs text-gray-500 mt-1 block">80% proficiency</span>
+                    </div>
+                </div>
+                
+                <!-- Skill 4 -->
+                <div class="skill-item bg-white p-6 rounded-xl shadow-md">
+                    <div class="w-14 h-14 rounded-full bg-primary/10 text-primary flex items-center justify-center mb-4">
+                        <i class="fas fa-chart-line text-2xl"></i>
+                    </div>
+                    <h3 class="text-lg font-bold mb-2">Design Strategy</h3>
+                    <p class="text-gray-600 text-sm">Aligning design with business objectives and user needs.</p>
+                    <div class="mt-4">
+                        <div class="w-full bg-gray-200 rounded-full h-2">
+                            <div class
